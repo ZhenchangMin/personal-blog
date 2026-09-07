@@ -11,8 +11,9 @@ const { note = '普通的一天，也值得留下来。' } = Astro.props;
   <span>{note}</span>
   <div>
     <a href={withBase('/')}>首页</a>
-    <a href={withBase('/moments')}>片刻</a>
     <a href={withBase('/archive')}>归档</a>
     <a href={withBase('/now')}>此刻</a>
+    <a href={withBase('/about')}>关于</a>
+    <a href={withBase('/rss.xml')}>RSS</a>
   </div>
 </footer>

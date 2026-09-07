@@ -104,17 +104,34 @@ Settings → Pages → Source → GitHub Actions
 
 选择 GitHub Actions。
 
-如果这个博客会作为主要个人主页，优先考虑把仓库命名为：
+当前部署计划使用普通仓库：
 
 ```text
-<你的 GitHub 用户名>.github.io
+personal-blog
 ```
 
-这样最终地址最干净：
+因此 GitHub Pages 地址会是：
 
 ```text
-https://<你的 GitHub 用户名>.github.io/
+https://<username>.github.io/personal-blog/
 ```
+
+`<username>.github.io` 专属仓库保留给未来单独的个人主页。
+
+## 站点基础设施
+
+当前正式实现还包含：
+
+- `/about`：关于这个博客和当前的自己
+- `/projects`：以项目故事而不是技术栈为主的项目页
+- `/404.html`：与 D3 视觉一致的自定义 404，并设置 `noindex`
+- `/rss.xml`：公开 Essays / Logs 的 RSS 订阅
+- `sitemap-index.xml`：构建时自动生成 sitemap
+- canonical URL、Open Graph、Twitter Card 元信息
+- `public/favicon.svg`：站点 favicon
+- `public/images/social-card.png`：默认 1200×630 分享卡片
+
+以上路径都经过 `personal-blog` GitHub Pages 子路径模拟验证。
 
 ## 设计基线
 

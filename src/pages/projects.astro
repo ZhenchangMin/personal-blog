@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SubHeader from '../components/SubHeader.astro';
+import PageFooter from '../components/PageFooter.astro';
+import '../styles/interior.css';
+import '../styles/foundation.css';
+
+const projects = [
+  { no: '01', title: 'AI Translator', state: 'Building', text: '从 PDF 阅读时一次不舒服的划词翻译体验开始，慢慢长成一个桌面翻译工具。这个项目让我第一次比较完整地经历一个软件从想法到持续打磨的过程。' },
+  { no: '02', title: 'MRI → PET', state: 'Research', text: '正在参与的医学影像生成研究。除了实验结果本身，我也在这里学习怎样提出问题、验证假设，以及面对科研里没有标准答案的部分。' },
+  { no: '03', title: 'Poetry Rewriting', state: 'Research / Build', text: '跨文化诗歌重写模型。它把语言、文化、形式约束和模型训练放在了一起，也是我真正开始学习“如何训练一个模型”的项目。' },
+  { no: '04', title: 'This Blog', state: 'Living project', text: '一个不是为了做完而做的项目。希望它随着生活一起变长，最后留下的不只是网页，而是一段可以回看的时间。' },
+];
+---
+
+<BaseLayout title="所做 · min / 留痕" description="项目不只是一行技术栈，而是问题、过程和一段时间的投入。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="page-shell">
+    <SubHeader />
+    <main id="main">
+      <header class="projects-head">
+        <p class="page-kicker">PROJECTS</p>
+        <h1 class="page-title">正在做，<br />也曾经做过。</h1>
+        <p class="page-lede">这里更关心一个项目为什么开始、过程中发生了什么，以及它最后改变了我什么，而不只是技术栈。</p>
+      </header>
+
+      <section class="project-ledger" aria-label="项目列表">
+        {projects.map((project) => (
+          <article class="project-entry">
+            <span class="project-no">{project.no}</span>
+            <div>
+              <p class="project-state">{project.state}</p>
+              <h2>{project.title}</h2>
+              <p>{project.text}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+    <PageFooter note="做出来的东西，也是一种时间记录。" />
+  </div>
+</BaseLayout>

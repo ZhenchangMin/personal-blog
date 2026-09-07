@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 const owner = process.env.GITHUB_REPOSITORY_OWNER;
 const repository = process.env.GITHUB_REPOSITORY?.split('/')[1];
@@ -13,4 +14,5 @@ export default defineConfig({
   site: process.env.SITE_URL || inferredSite,
   base: process.env.BASE_PATH || inferredBase,
   trailingSlash: 'never',
+  integrations: [sitemap()],
 });

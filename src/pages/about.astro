@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SubHeader from '../components/SubHeader.astro';
+import PageFooter from '../components/PageFooter.astro';
+import '../styles/interior.css';
+import '../styles/foundation.css';
+---
+
+<BaseLayout title="关于 · min / 留痕" description="关于这个博客，也关于此刻正在认真生活和记录的我。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="page-shell">
+    <SubHeader />
+    <main id="main">
+      <header class="about-head">
+        <p class="page-kicker">ABOUT</p>
+        <h1 class="page-title">关于这里，<br />也关于我。</h1>
+        <p class="page-lede">这里不是一份简历，也不是一个只展示技术成果的橱窗。它更像一份长期更新的生活档案。</p>
+      </header>
+
+      <section class="about-grid">
+        <aside class="about-note">min · 软件工程学生<br />写代码，做研究，也认真记录普通生活。</aside>
+        <div class="about-copy article-prose">
+          <p>我希望这里慢慢留下我做过的事、学会的东西、还没有想明白的问题，以及那些很容易被时间冲淡的日常瞬间。</p>
+          <p>技术、科研、书影音、旅行、照片和人生思考都会出现在这里。它们不需要被硬分成互不相干的栏目，因为对我来说，它们原本就是同一段生活。</p>
+          <h2>为什么叫「留痕」</h2>
+          <p>因为我越来越觉得，很多经历如果没有留下记录，几年之后就只剩下一种模糊的“好像发生过”。文章、照片、项目和一句很短的 Moment，都是时间经过时留下的痕迹。</p>
+          <h2>这个网站不会做什么</h2>
+          <p>它不会为了证明自己而堆满指标，也不会要求每一个想法都足够成熟才允许出现。有些内容会很完整，有些可能只是一个阶段性的答案。</p>
+        </div>
+      </section>
+    </main>
+    <PageFooter note="希望很多年以后，仍然能从这里认出当时的自己。" />
+  </div>
+</BaseLayout>

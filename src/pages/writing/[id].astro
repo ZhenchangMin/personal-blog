@@ -18,7 +18,7 @@ const { Content } = await render(entry);
 const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THINK';
 ---
 
-<BaseLayout title={`${entry.data.title} · min / 留痕`} description={entry.data.description} themeColor="#eceae3">
+<BaseLayout title={`${entry.data.title} · min / 留痕`} description={entry.data.description} themeColor="#eceae3" type="article">
   <a class="skip-link" href="#main">跳到正文</a>
   <div class="page-shell">
     <SubHeader />

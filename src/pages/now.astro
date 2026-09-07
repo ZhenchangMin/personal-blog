@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SubHeader from '../components/SubHeader.astro';
+import PageFooter from '../components/PageFooter.astro';
+import '../styles/interior.css';
+import { sortNewest } from '../lib/date';
+import { withBase } from '../lib/url';
+
+const entries = sortNewest((await getCollection('now')).filter((entry) => entry.data.status === 'public'));
+const current = entries[0];
+if (!current) throw new Error('No public Now snapshot found.');
+const { Content } = await render(current);
+const month = String(current.data.date.getUTCMonth() + 1).padStart(2, '0');
+const year = String(current.data.date.getUTCFullYear()).slice(-2);
+const fullYear = current.data.date.getUTCFullYear();
+const monthLabel = new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: 'UTC' }).format(current.data.date);
+---
+
+<BaseLayout title="此刻 · min / 留痕" description={current.data.summary}>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="page-shell">
+    <SubHeader />
+    <main id="main">
+      <header class="now-head">
+        <p class="page-kicker">NOW</p>
+        <h1 class="page-title">现在的我</h1>
+        <p class="page-lede">不是个人简介，而是一张会过期的快照。记录这个阶段正在把注意力放在哪里。</p>
+      </header>
+
+      <div class="now-grid">
+        <aside class="now-stamp" aria-label={`${fullYear} 年 ${month} 月`}>
+          <strong>{month}<br />{year}</strong>
+          <span>{monthLabel} · {fullYear}</span>
+        </aside>
+        <div class="now-sections">
+          <div class="now-body article-prose"><Content /></div>
+
+          <section class="now-block">
+            <h2>最近</h2>
+            <div class="currently">
+              {current.data.learning && <><span>Learning</span><span>{current.data.learning}</span></>}
+              {current.data.building && <><span>Building</span><span>{current.data.building}</span></>}
+              {current.data.thinking && <><span>Thinking</span><span>{current.data.thinking}</span></>}
+              {current.data.wanting && <><span>Wanting</span><span>{current.data.wanting}</span></>}
+            </div>
+          </section>
+
+          <section class="now-history">
+            <h2>过去的快照</h2>
+            {entries.length > 1
+              ? entries.slice(1).map((entry) => <a href={withBase(`/now/${entry.id}`)}>{entry.id}</a>)
+              : <p class="interior-note">这个时间序列刚刚开始。以后每个阶段会慢慢留在这里，不覆盖过去的自己。</p>}
+          </section>
+        </div>
+      </div>
+    </main>
+    <PageFooter note="此刻会过期，所以值得留下。" />
+  </div>
+</BaseLayout>

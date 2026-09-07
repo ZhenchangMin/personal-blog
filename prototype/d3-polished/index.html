@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1f2928" />
+  <title>min · 留痕 — D3 Polished</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <section class="cover" aria-label="首页封面">
+    <div class="cover-shade" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="./index.html"><strong>min</strong><span>留痕</span></a>
+      <nav aria-label="主导航">
+        <a href="#writing">写作</a>
+        <a href="#moments">片刻</a>
+        <a href="#projects">所做</a>
+        <a href="#about">关于</a>
+      </nav>
+    </header>
+
+    <div class="cover-copy">
+      <p class="season">二〇二六年 · 九月</p>
+      <h1>把日子<br />留下来。</h1>
+      <p class="intro">记录正在做的事、还没想明白的问题，也记录那些普通得几乎会被忘掉的瞬间。</p>
+    </div>
+
+    <a class="cover-scroll" href="#main" aria-label="继续向下阅读">
+      <i aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <main id="main" class="content-shell">
+    <section class="now-bar" aria-labelledby="now-title">
+      <div>
+        <p id="now-title">此刻</p>
+        <time datetime="2026-09">2026 · 09</time>
+      </div>
+      <p>在学校学习和生活。做研究，写代码，也开始认真想以后想成为怎样的人。</p>
+      <a href="./now.html">现在的我</a>
+    </section>
+
+    <section class="feature" aria-labelledby="feature-title">
+      <div class="feature-meta">
+        <span>本月长文</span>
+        <time datetime="2026-09-05">09.05</time>
+      </div>
+      <div class="feature-copy">
+        <h2 id="feature-title">我为什么想拥有一个自己的博客</h2>
+        <p>不是为了成为一个“内容创作者”。只是突然发现，如果不主动留下什么，很多阶段过去以后就只剩下模糊的印象。</p>
+        <a href="./article.html">读这篇文章</a>
+      </div>
+      <div class="feature-art" aria-hidden="true">
+        <span class="ring"></span>
+        <span class="small-ring"></span>
+        <span class="feature-word">TRACE</span>
+      </div>
+    </section>
+
+    <section class="writing" id="writing">
+      <div class="section-head">
+        <h2>最近写下的</h2>
+        <p>长一点的思考与记录。这里不按领域分栏，只按时间留下来。</p>
+      </div>
+      <div class="writing-list">
+        <a href="#"><time>09.03</time><h3>开始认真考虑读博这件事</h3><p>比“读不读”更重要的问题，也许是我到底喜不喜欢科研这种生活。</p></a>
+        <a href="#"><time>08.31</time><h3>八月的一些事情</h3><p>项目、朋友、几次晚归，以及几个没有答案的问题。</p></a>
+        <a href="#"><time>08.24</time><h3>我终于真正理解 Docker 了</h3><p>从一个困惑开始，慢慢把 container、WSL 和宿主机放到同一张图里。</p></a>
+      </div>
+    </section>
+
+    <section class="moments" id="moments">
+      <div class="moments-visual" role="img" aria-label="生活照片区域占位，以后换成自己的照片">
+        <div class="moments-caption">
+          <small>2026 · 08 · 31</small>
+          <span>生活不是素材，<br />它本身就是正文。</span>
+        </div>
+      </div>
+      <div class="moments-copy">
+        <div class="section-head compact">
+          <h2>片刻</h2>
+          <p>没有必要成为一篇文章。</p>
+        </div>
+        <article><time>09.04</time><p>今天突然决定开始认真做一个个人网站。不是因为有什么一定要告诉别人，只是觉得过去的很多想法如果没有留下来，最后真的会像从来没有发生过一样。</p></article>
+        <article><time>08.31</time><p>傍晚回去的时候天气很好。绕了远路，拍了一张照片。普通的一天，也值得留下来。</p></article>
+        <article><time>08.27</time><p>修掉一个拖了很久的问题。原来很多事情就是这样一点点做完的。</p></article>
+        <a class="more" href="./moments.html">更多片刻</a>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="section-head">
+        <h2>正在做的事</h2>
+        <p>项目也是生活的一部分，它们不只是一行技术栈。</p>
+      </div>
+      <div class="project-grid">
+        <a href="#"><span>01</span><h3>AI Translator</h3><p>从一次不舒服的 PDF 阅读体验开始。</p></a>
+        <a href="#"><span>02</span><h3>MRI → PET</h3><p>一段仍在进行中的医学影像科研训练。</p></a>
+        <a href="#"><span>03</span><h3>Poetry Rewriting</h3><p>诗歌、文化和模型之间的一次实验。</p></a>
+      </div>
+    </section>
+
+    <footer id="about">
+      <div class="footer-main">
+        <p>认真生活，也认真留下痕迹。</p>
+        <div><a href="./archive.html">归档</a><a href="#">RSS</a><a href="#">GitHub</a></div>
+      </div>
+      <p class="photo-credit">Prototype cover photo: “Campus at sunset”, Students of IIMA · CC BY 3.0. 最终版本将替换为自己的照片。</p>
+    </footer>
+  </main>
+</body>
+</html>

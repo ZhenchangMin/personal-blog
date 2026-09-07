@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SubHeader from '../components/SubHeader.astro';
+import PageFooter from '../components/PageFooter.astro';
+import '../styles/interior.css';
+import { withBase } from '../lib/url';
+
+const essays = (await getCollection('essays')).filter((entry) => entry.data.status === 'public').map((entry) => ({
+  id: entry.id,
+  date: entry.data.date,
+  title: entry.data.title,
+  type: entry.data.kind === 'learn' ? 'Learn' : 'Essay',
+  href: withBase(`/writing/${entry.id}`),
+}));
+const logs = (await getCollection('logs')).filter((entry) => entry.data.status === 'public').map((entry) => ({
+  id: entry.id,
+  date: entry.data.date,
+  title: entry.data.title,
+  type: 'Log',
+  href: withBase(`/logs/${entry.id}`),
+}));
+const moments = (await getCollection('moments')).filter((entry) => entry.data.status === 'public').map((entry) => ({
+  id: entry.id,
+  date: entry.data.date,
+  title: '一条片刻',
+  type: 'Moment',
+  href: withBase(`/moments#${entry.id}`),
+}));
+
+const all = [...essays, ...logs, ...moments].sort((a, b) => b.date.getTime() - a.date.getTime());
+const years = [...new Set(all.map((item) => item.date.getUTCFullYear()))];
+const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+---
+
+<BaseLayout title="归档 · min / 留痕" description="文章、片刻和阶段记录最终都回到时间里。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="page-shell">
+    <SubHeader />
+    <main id="main">
+      <header class="archive-head">
+        <p class="page-kicker">ARCHIVE</p>
+        <h1 class="page-title">留下来的时间</h1>
+        <p class="page-lede">文章、片刻和阶段记录最终都回到时间里。这里不是“内容分类”，而是一张慢慢变长的个人时间表。</p>
+      </header>
+
+      {years.map((year) => {
+        const yearItems = all.filter((item) => item.date.getUTCFullYear() === year);
+        const months = [...new Set(yearItems.map((item) => item.date.getUTCMonth()))].sort((a,b) => b-a);
+        return (
+          <section class="archive-year" aria-labelledby={`year-${year}`}>
+            <h2 id={`year-${year}`}>{year}</h2>
+            <div>
+              {months.map((month) => (
+                <div class="archive-month">
+                  <h3>{monthNames[month]}</h3>
+                  {yearItems.filter((item) => item.date.getUTCMonth() === month).map((item) => (
+                    <div class="archive-item" id={item.id}>
+                      <time datetime={item.date.toISOString()}>{String(item.date.getUTCDate()).padStart(2, '0')}</time>
+                      <a href={item.href}>{item.title}</a>
+                      <span>{item.type}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </main>
+    <PageFooter note="时间是这个网站最重要的索引。" />
+  </div>
+</BaseLayout>

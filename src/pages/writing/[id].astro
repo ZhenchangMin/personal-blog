@@ -1,0 +1,74 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SubHeader from '../../components/SubHeader.astro';
+import PageFooter from '../../components/PageFooter.astro';
+import '../../styles/interior.css';
+import { formatDate } from '../../lib/date';
+import { withBase } from '../../lib/url';
+import { heroConfig } from '../../config/site';
+
+export async function getStaticPaths() {
+  const entries = (await getCollection('essays')).filter((entry) => entry.data.status === 'public');
+  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THINK';
+---
+
+<BaseLayout title={`${entry.data.title} · min / 留痕`} description={entry.data.description} themeColor="#eceae3">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="page-shell">
+    <SubHeader />
+    <main id="main">
+      <header class="article-hero">
+        <p class="page-kicker">{kindLabel}</p>
+        <h1 class="page-title">{entry.data.title}</h1>
+        <p class="page-lede">{entry.data.description}</p>
+        <div class="article-meta">
+          <span>{formatDate(entry.data.date)}</span>
+          <div>
+            {entry.data.location && <span>{entry.data.location}</span>}
+            {entry.data.tags.map((tag) => <span>{tag}</span>)}
+            {entry.data.updated && <span>最后修改于 {formatDate(entry.data.updated)}</span>}
+          </div>
+        </div>
+      </header>
+    </main>
+  </div>
+
+  {entry.data.featured && (
+    <div
+      class="article-banner"
+      role="img"
+      aria-label="黄昏中的校园，暂时作为文章照片占位"
+      style={`--article-banner-image: url('${withBase(heroConfig.images[0].src)}')`}
+    ></div>
+  )}
+
+  <div class="page-shell">
+    <article class="article-body">
+      <aside class="article-aside">
+        <strong>这一页</strong>
+        {entry.data.kind === 'learn' ? '一次刚刚学懂之后留下的记录。' : '一段在这个阶段认真想过的事情。'}
+      </aside>
+
+      <div class="article-prose">
+        <Content />
+        <p class="end-note">
+          {formatDate(entry.data.date)}
+          {entry.data.location ? ` · ${entry.data.location}` : ''}
+        </p>
+      </div>
+
+      <div class="article-next">
+        <a href={withBase('/#writing')}><small>← 回到写作</small><strong>继续看最近写下的</strong></a>
+        <a href={withBase('/moments')}><small>接下来 →</small><strong>看看一些片刻</strong></a>
+      </div>
+    </article>
+
+    <PageFooter />
+  </div>
+</BaseLayout>

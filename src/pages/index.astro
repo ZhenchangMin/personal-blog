@@ -11,11 +11,8 @@ const essays = sortNewest((await getCollection('essays')).filter((entry) => entr
 const logs = sortNewest((await getCollection('logs')).filter((entry) => entry.data.status === 'public'));
 const momentEntries = sortNewest((await getCollection('moments')).filter((entry) => entry.data.status === 'public'));
 
-const featured = essays.find((entry) => entry.data.featured) ?? essays[0];
 const timeline = [
-  ...essays
-    .filter((entry) => entry.id !== featured?.id)
-    .map((entry) => ({
+  ...essays.map((entry) => ({
       date: entry.data.date,
       title: entry.data.title,
       description: entry.data.description,
@@ -73,25 +70,6 @@ const homeMoments = await Promise.all(
       <p>在学校学习和生活。做研究，写代码，也开始认真想以后想成为怎样的人。</p>
       <a href={withBase('/now')}>现在的我</a>
     </section>
-
-    {featured && (
-      <section class="feature" aria-labelledby="feature-title">
-        <div class="feature-meta">
-          <span>本月长文</span>
-          <time datetime={featured.data.date.toISOString()}>{formatMonthDay(featured.data.date)}</time>
-        </div>
-        <div class="feature-copy">
-          <h2 id="feature-title">{featured.data.title}</h2>
-          <p>{featured.data.description}</p>
-          <a href={withBase(`/writing/${featured.id}`)}>读这篇文章</a>
-        </div>
-        <div class="feature-art" aria-hidden="true">
-          <span class="ring"></span>
-          <span class="small-ring"></span>
-          <span class="feature-word">TRACE</span>
-        </div>
-      </section>
-    )}
 
     <section class="writing" id="writing">
       <div class="section-head">

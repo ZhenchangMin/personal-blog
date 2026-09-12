@@ -6,7 +6,6 @@ import PageFooter from '../../components/PageFooter.astro';
 import '../../styles/interior.css';
 import { formatDate } from '../../lib/date';
 import { withBase } from '../../lib/url';
-import { heroConfig } from '../../config/site';
 
 export async function getStaticPaths() {
   const entries = (await getCollection('essays')).filter((entry) => entry.data.status === 'public');
@@ -39,22 +38,17 @@ const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THIN
     </main>
   </div>
 
-  {entry.data.featured && (
+  {entry.data.heroImage && (
     <div
       class="article-banner"
       role="img"
-      aria-label="黄昏中的校园，暂时作为文章照片占位"
-      style={`--article-banner-image: url('${withBase(heroConfig.images[0].src)}')`}
+      aria-label={entry.data.heroAlt ?? ''}
+      style={`--article-banner-image: url('${withBase(entry.data.heroImage)}')`}
     ></div>
   )}
 
   <div class="page-shell">
-    <article class="article-body">
-      <aside class="article-aside">
-        <strong>这一页</strong>
-        {entry.data.kind === 'learn' ? '一次刚刚学懂之后留下的记录。' : '一段在这个阶段认真想过的事情。'}
-      </aside>
-
+    <article class:list={['article-body', { 'no-banner': !entry.data.heroImage }]}>
       <div class="article-prose">
         <Content />
         <p class="end-note">

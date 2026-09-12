@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import remarkGfm from 'remark-gfm';
+import { unified } from '@astrojs/markdown-remark';
 
 const owner = process.env.GITHUB_REPOSITORY_OWNER;
 const repository = process.env.GITHUB_REPOSITORY?.split('/')[1];
@@ -15,4 +17,7 @@ export default defineConfig({
   base: process.env.BASE_PATH || inferredBase,
   trailingSlash: 'never',
   integrations: [sitemap()],
+  markdown: {
+    processor: unified({ remarkPlugins: [remarkGfm] }),
+  },
 });

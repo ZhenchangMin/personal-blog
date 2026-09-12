@@ -16,6 +16,8 @@ const essays = defineCollection({
     kind: z.enum(['essay', 'learn']).default('essay'),
     tags: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
+    heroImage: z.string().optional(),
+    heroAlt: z.string().optional(),
   }),
 });
 

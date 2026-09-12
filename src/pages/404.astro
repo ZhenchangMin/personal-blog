@@ -7,15 +7,15 @@ import '../styles/interior.css';
 import '../styles/foundation.css';
 ---
 
-<BaseLayout title="没有找到这一页 · min的博客" description="这条痕迹暂时不存在。" noIndex>
+<BaseLayout title="页面不存在 · min的博客" description="页面不存在。" noIndex>
   <div class="page-shell">
     <SubHeader />
     <main class="not-found" id="main">
       <p class="page-kicker">404</p>
-      <h1 class="page-title">这一页，<br />没有留下来。</h1>
-      <p class="page-lede">可能是地址变了，也可能它还没有被写下。回到首页，继续看看已经留下的东西。</p>
+      <h1 class="page-title">没有找到这一页。</h1>
+      <p class="page-lede">可能是地址发生了变化，或者页面已经删除。</p>
       <a class="not-found-link" href={withBase('/')}>回到首页 →</a>
     </main>
-    <PageFooter note="有些空白，本身也是时间的一部分。" />
+    <PageFooter />
   </div>
 </BaseLayout>

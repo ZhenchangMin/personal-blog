@@ -6,42 +6,30 @@ import PageFooter from '../components/PageFooter.astro';
 import '../styles/interior.css';
 import { withBase } from '../lib/url';
 
-const essays = (await getCollection('essays')).filter((entry) => entry.data.status === 'public').map((entry) => ({
-  id: entry.id,
-  date: entry.data.date,
-  title: entry.data.title,
-  type: entry.data.kind === 'learn' ? 'Learn' : 'Essay',
-  href: withBase(`/writing/${entry.id}`),
-}));
-const logs = (await getCollection('logs')).filter((entry) => entry.data.status === 'public').map((entry) => ({
-  id: entry.id,
-  date: entry.data.date,
-  title: entry.data.title,
-  type: 'Log',
-  href: withBase(`/logs/${entry.id}`),
-}));
-const moments = (await getCollection('moments')).filter((entry) => entry.data.status === 'public').map((entry) => ({
-  id: entry.id,
-  date: entry.data.date,
-  title: '一条片刻',
-  type: 'Moment',
-  href: withBase(`/moments#${entry.id}`),
-}));
+const all = (await getCollection('essays'))
+  .filter((entry) => entry.data.status === 'public')
+  .map((entry) => ({
+    id: entry.id,
+    date: entry.data.date,
+    title: entry.data.title,
+    type: entry.data.kind === 'learn' ? 'Learn' : 'Essay',
+    href: withBase(`/writing/${entry.id}`),
+  }))
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
 
-const all = [...essays, ...logs, ...moments].sort((a, b) => b.date.getTime() - a.date.getTime());
 const years = [...new Set(all.map((item) => item.date.getUTCFullYear()))];
 const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 ---
 
-<BaseLayout title="归档 · min的博客" description="文章、片刻和阶段记录最终都回到时间里。">
+<BaseLayout title="归档 · min的博客" description="按时间整理的文章。">
   <a class="skip-link" href="#main">跳到正文</a>
   <div class="page-shell">
     <SubHeader />
     <main id="main">
       <header class="archive-head">
         <p class="page-kicker">ARCHIVE</p>
-        <h1 class="page-title">留下来的时间</h1>
-        <p class="page-lede">文章、片刻和阶段记录最终都回到时间里。这里不是“内容分类”，而是一张慢慢变长的个人时间表。</p>
+        <h1 class="page-title">归档</h1>
+        <p class="page-lede">按时间整理写下的文章。</p>
       </header>
 
       {years.map((year) => {
@@ -68,6 +56,6 @@ const monthNames = ['January','February','March','April','May','June','July','Au
         );
       })}
     </main>
-    <PageFooter note="时间是这个网站最重要的索引。" />
+    <PageFooter />
   </div>
 </BaseLayout>

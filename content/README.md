@@ -1,102 +1,39 @@
-# Content Model
+# Content
 
-这里存博客真正的内容。当前阶段先保持文件结构简单，不绑定任何框架。
+目前博客只发布 `essays/` 中的文章。没有真实内容的栏目先不建立，也不放示例数据。
 
-## 内容类型
+## 写一篇文章
 
-### essays/
+在 `content/essays/` 下新建 Markdown 文件，例如：
 
-比较完整的文章与思考。
+```text
+2026-09-12-why-i-want-a-blog.md
+```
 
-适合：
-- 对人生、学习、科研、职业的完整思考
-- 技术理解与学习记录
-- 一次经历之后整理出的文章
-
-建议最小元信息：
+推荐 frontmatter：
 
 ```yaml
-title: "..."
-date: 2026-09-05
-location: "Nanjing"   # optional
+---
+title: "文章标题"
+description: "一行简介"
+date: 2026-09-12
 status: draft          # private | draft | public
-tags: []               # optional, 少量即可
+kind: essay            # essay | learn
+tags: []
+location: ""           # optional
+heroImage: ""          # optional；只有配置时文章才显示头图
+heroAlt: ""            # optional
+---
 ```
 
-### moments/
+正文直接使用 Markdown。当前文章样式支持标题、列表、引用、表格、图片、图注、行内代码和代码块。
 
-没有标题压力的短记录。
+## 发布状态
 
-适合：
-- 一句话
-- 一张照片 + 一句话
-- 某天突然想到的东西
-- 很短的学习发现
-- 一首歌 / 一本书 / 一个链接留下的感受
+- `private`：不公开
+- `draft`：正在写
+- `public`：参与网站构建并发布
 
-建议最小元信息：
+写完并确认要公开后，将 `status` 改为 `public`，commit + push 后 GitHub Pages 会自动部署。
 
-```yaml
-date: 2026-09-05 14:30
-status: draft          # private | draft | public
-location: "Nanjing"   # optional
-photos: []             # optional
-```
-
-标题不是必填字段。
-
-### logs/
-
-月记、旅行记录、阶段总结。
-
-重点不是“总结得多完整”，而是保存一个阶段的生活切片。
-
-### projects/
-
-项目故事。
-
-重点写：
-- 为什么开始
-- 最初想解决什么
-- 中间发生了什么
-- 学到了什么
-- 现在是什么状态
-- 未来还想不想继续
-
-不要只写技术栈和 GitHub 链接。
-
-## 内容状态
-
-统一使用：
-
-```text
-private -> draft -> public
-```
-
-- `private`：只给自己看
-- `draft`：正在整理，暂不发布
-- `public`：可以出现在博客
-
-公开不是默认动作。
-
-## 文件命名
-
-文章：
-
-```text
-2026-09-05-why-i-want-a-blog.md
-```
-
-Moment 可以按日期或 UUID；第一版建议按日期：
-
-```text
-2026-09-05.md
-```
-
-同一天多条 Moment 时，可在一个文件中存多条，避免产生大量微小文件。真正实现时再根据框架的 content collection 能力调整。
-
-## 原则
-
-内容结构服务于“容易留下东西”，而不是服务于 CMS 的复杂性。
-
-在技术栈确定前，不把这些约定写死成某个框架的 frontmatter schema。
+以后如果真的开始写 Moments、阶段记录或其他内容，再根据真实需要增加对应的 content collection；在那之前不放占位内容。

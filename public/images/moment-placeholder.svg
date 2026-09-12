@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
-  <title id="title">Moment photo placeholder</title>
-  <desc id="desc">Muted geometric bands used only until a real life photo is added.</desc>
-  <rect width="1200" height="800" fill="#849592"/>
-  <path d="M0 470L1200 210V520L0 780Z" fill="#aeb7ad"/>
-  <path d="M0 610L1200 350V470L0 730Z" fill="#c2a76b"/>
-  <path d="M0 760L1200 500V800H0Z" fill="#42584f"/>
-</svg>

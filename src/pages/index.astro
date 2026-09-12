@@ -47,7 +47,6 @@ const homeMoments = await Promise.all(
       <nav aria-label="主导航">
         <a href="#writing">写作</a>
         <a href={withBase('/moments')}>片刻</a>
-        <a href={withBase('/projects')}>所做</a>
         <a href={withBase('/about')}>关于</a>
       </nav>
     </header>
@@ -108,22 +107,10 @@ const homeMoments = await Promise.all(
       </div>
     </section>
 
-    <section class="projects" id="projects">
-      <div class="section-head">
-        <h2>正在做的事</h2>
-        <p>项目也是生活的一部分，它们不只是一行技术栈。</p>
-      </div>
-      <div class="project-grid project-grid-static">
-        <article><span>01</span><h3>AI Translator</h3><p>从一次不舒服的 PDF 阅读体验开始。</p></article>
-        <article><span>02</span><h3>MRI → PET</h3><p>一段仍在进行中的医学影像科研训练。</p></article>
-        <article><span>03</span><h3>Poetry Rewriting</h3><p>诗歌、文化和模型之间的一次实验。</p></article>
-      </div>
-    </section>
-
     <footer id="about">
       <div class="footer-main">
         <p>认真生活，也认真留下痕迹。</p>
-        <div><a href={withBase('/archive')}>归档</a><a href={withBase('/projects')}>所做</a><a href={withBase('/about')}>关于</a></div>
+        <div><a href={withBase('/archive')}>归档</a><a href={withBase('/about')}>关于</a></div>
       </div>
       <p class="photo-credit">当前封面：{heroConfig.images[0].credit}。以后可在配置中加入自己的照片并选择随机或轮播模式。</p>
     </footer>

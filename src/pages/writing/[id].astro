@@ -29,9 +29,8 @@ const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THIN
         <div class="article-meta">
           <span>{formatDate(entry.data.date)}</span>
           <div>
-            {entry.data.location && <span>{entry.data.location}</span>}
-            {entry.data.tags.map((tag) => <span>{tag}</span>)}
-            {entry.data.updated && <span>最后修改于 {formatDate(entry.data.updated)}</span>}
+            {entry.data.location && <span class="article-location">{entry.data.location}</span>}
+            {entry.data.tags.map((tag) => <span class="article-tag">{tag}</span>)}
           </div>
         </div>
       </header>

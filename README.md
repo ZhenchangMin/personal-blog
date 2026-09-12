@@ -1,4 +1,4 @@
-# personal-blog · 留痕
+# personal-blog · min的博客
 
 一个长期维护的个人博客 / 数字花园 / 生活档案。
 

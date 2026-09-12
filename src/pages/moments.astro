@@ -11,7 +11,7 @@ const entries = sortNewest((await getCollection('moments')).filter((entry) => en
 const rendered = await Promise.all(entries.map(async (entry) => ({ entry, Content: (await render(entry)).Content })));
 ---
 
-<BaseLayout title="片刻 · min / 留痕" description="一些不需要长成文章的东西。">
+<BaseLayout title="片刻 · min的博客" description="一些不需要长成文章的东西。">
   <a class="skip-link" href="#main">跳到正文</a>
   <div class="page-shell">
     <SubHeader />

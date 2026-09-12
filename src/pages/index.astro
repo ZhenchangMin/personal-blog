@@ -39,14 +39,14 @@ const homeMoments = await Promise.all(
 );
 ---
 
-<BaseLayout title="min · 留痕" themeColor="#1f2928">
+<BaseLayout title="min的博客" themeColor="#1f2928">
   <a class="skip-link" href="#main">跳到正文</a>
 
   <section class="cover" aria-label="首页封面">
     <HeroRotator images={heroConfig.images} mode={heroConfig.mode} intervalMs={heroConfig.intervalMs} />
     <div class="cover-shade" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href={withBase('/')} aria-label="首页"><strong>min</strong><span>留痕</span></a>
+      <a class="brand" href={withBase('/')} aria-label="首页"><strong>min</strong><span>的博客</span></a>
       <nav aria-label="主导航">
         <a href="#writing">写作</a>
         <a href={withBase('/moments')}>片刻</a>
@@ -57,7 +57,7 @@ const homeMoments = await Promise.all(
 
     <div class="cover-copy">
       <p class="season">二〇二六年 · 九月</p>
-      <h1>把日子<br />留下来。</h1>
+      <h1>min的博客</h1>
       <p class="intro">记录正在做的事、还没想明白的问题，也记录那些普通得几乎会被忘掉的瞬间。</p>
     </div>
 

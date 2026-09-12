@@ -16,7 +16,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={`${entry.data.title} · min / 留痕`} description={entry.data.description} themeColor="#eceae3" type="article">
+<BaseLayout title={`${entry.data.title} · min的博客`} description={entry.data.description} themeColor="#eceae3" type="article">
   <a class="skip-link" href="#main">跳到正文</a>
   <div class="page-shell">
     <SubHeader />

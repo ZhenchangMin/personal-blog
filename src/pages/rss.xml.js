@@ -22,7 +22,7 @@ export async function GET(context) {
   ].sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
 
   return rss({
-    title: 'min / 留痕',
+    title: 'min的博客',
     description: '记录做过的事、想过的问题，以及那些不值得被忘记的普通瞬间。',
     site: new URL(import.meta.env.BASE_URL, context.site),
     items,

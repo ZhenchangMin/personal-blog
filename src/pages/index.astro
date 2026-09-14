@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroRotator from '../components/HeroRotator.astro';
+import { heroConfig } from '../config/site';
 import { formatMonthDay, sortNewest } from '../lib/date';
 import { withBase } from '../lib/url';
 import '../styles/home.css';
@@ -18,6 +20,7 @@ const timeline = essays.slice(0, 6).map((entry) => ({
   <a class="skip-link" href="#main">跳到正文</a>
 
   <section class="cover" aria-label="首页封面">
+    <HeroRotator images={heroConfig.images} mode={heroConfig.mode} intervalMs={heroConfig.intervalMs} />
     <div class="cover-shade" aria-hidden="true"></div>
     <header class="site-header">
       <a class="brand" href={withBase('/')} aria-label="首页"><strong>min</strong><span>的博客</span></a>
@@ -56,6 +59,7 @@ const timeline = essays.slice(0, 6).map((entry) => ({
         <span>min的博客</span>
         <div><a href={withBase('/archive')}>归档</a><a href={withBase('/rss.xml')}>RSS</a></div>
       </div>
+      <p class="photo-credit">封面：{heroConfig.images[0].credit}</p>
     </footer>
   </main>
 </BaseLayout>

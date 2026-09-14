@@ -5,7 +5,7 @@ import { z } from 'astro/zod';
 const status = z.enum(['private', 'draft', 'public']).default('draft');
 
 const essays = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './content/essays' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './content/essays', deferRender: true }),
   schema: z.object({
     title: z.string(),
     description: z.string(),

@@ -35,5 +35,3 @@ heroAlt: ""            # optional
 - `public`：参与网站构建并发布
 
 写完并确认要公开后，将 `status` 改为 `public`，commit + push 后 GitHub Pages 会自动部署。
-
-以后如果真的开始写 Moments、阶段记录或其他内容，再根据真实需要增加对应的 content collection；在那之前不放占位内容。

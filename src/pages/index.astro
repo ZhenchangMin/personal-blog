@@ -15,8 +15,6 @@ const timeline = essays.slice(0, 6).map((entry) => ({
   href: withBase(`/writing/${entry.id}`),
 }));
 
-const subscribeEndpoint = 'https://e4309122.sibforms.com/v2/serve/MUIFAOKPVie7fgwmto1Ea4jDjraCD-ZLm3vjcRBH6pj3cmtkovJ0muizVeTrz62iLvWwcbu_9H-H11qWfCkMDzym_cv7SF4IT6wDgk_MpfdihQVb6gORZ6UP8OFZbAGViy3AJEF5REpPdXLNGB6MoZXkNdKaUjP47PiHzinGIyGXqWXa_-1OR7HsvMG4IKvs0dRiL3EzG9OlQK0j-w==';
-const unsubscribeEndpoint = 'https://e4309122.sibforms.com/v2/serve/MUIFAJPw_CvNHs8t2hiwWK6jU-KDwxTEg0srOMUe011E5mioKshrviHG82xiKKBSQmwsU25OapNJ3kv3S3uaTKDsraonETZcK4bJdW8urZBZ0Hl9RU75V0_Ldov9EGLdrfhwZ6WAPW94ISCGDXhEY8m93dw-XzTD5X_fA9UGC9RtUimcXXPQDMKL3gvZw-ueltTE19ZBSUTVO0Y0pw==';
 ---
 
 <BaseLayout title="min的博客" description="min的个人博客" themeColor="#1f2928">
@@ -57,108 +55,10 @@ const unsubscribeEndpoint = 'https://e4309122.sibforms.com/v2/serve/MUIFAJPw_CvN
       </div>
     </section>
 
-    <section class="subscribe" id="subscribe" aria-labelledby="subscribe-title">
-      <div class="subscribe-copy">
-        <p class="subscribe-kicker">LETTER</p>
-        <h2 id="subscribe-title">订阅更新</h2>
-        <p>有新的文章时，寄一封邮件给你。</p>
-      </div>
-
-      <div class="subscribe-controls">
-        <form class="subscribe-form" method="POST" action={subscribeEndpoint} target="subscribe-result">
-          <label class="subscribe-label" for="subscribe-email">邮箱</label>
-          <div class="subscribe-row">
-            <input
-              id="subscribe-email"
-              name="EMAIL"
-              type="email"
-              autocomplete="email"
-              placeholder="your@email.com"
-              required
-            />
-            <button type="submit">订阅</button>
-          </div>
-          <input class="subscribe-honeypot" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input type="hidden" name="locale" value="en" />
-          <p class="subscribe-note">只在有新文章时联系你 · <button class="manage-toggle" type="button" aria-expanded="false" aria-controls="unsubscribe-panel">管理订阅 / 退订</button></p>
-          <p class="subscribe-status" data-subscribe-status aria-live="polite"></p>
-        </form>
-
-        <div class="unsubscribe-panel" id="unsubscribe-panel" hidden>
-          <p class="unsubscribe-intro">已经订阅？输入同一个邮箱即可停止接收更新。</p>
-          <form class="unsubscribe-form" method="POST" action={unsubscribeEndpoint} target="unsubscribe-result">
-            <label class="subscribe-label" for="unsubscribe-email">退订邮箱</label>
-            <div class="subscribe-row unsubscribe-row">
-              <input
-                id="unsubscribe-email"
-                name="EMAIL"
-                type="email"
-                autocomplete="email"
-                placeholder="your@email.com"
-                required
-              />
-              <button type="submit">退订</button>
-            </div>
-            <input class="subscribe-honeypot" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" />
-            <input type="hidden" name="locale" value="en" />
-            <p class="subscribe-status" data-unsubscribe-status aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-
-      <iframe class="subscribe-result" name="subscribe-result" title="订阅提交结果" aria-hidden="true"></iframe>
-      <iframe class="subscribe-result" name="unsubscribe-result" title="退订提交结果" aria-hidden="true"></iframe>
-    </section>
-
-    <script>
-      const subscribeForm = document.querySelector<HTMLFormElement>('.subscribe-form');
-      const subscribeResult = document.querySelector<HTMLIFrameElement>('iframe[name="subscribe-result"]');
-      const subscribeStatus = document.querySelector<HTMLElement>('[data-subscribe-status]');
-      const unsubscribeForm = document.querySelector<HTMLFormElement>('.unsubscribe-form');
-      const unsubscribeResult = document.querySelector<HTMLIFrameElement>('iframe[name="unsubscribe-result"]');
-      const unsubscribeStatus = document.querySelector<HTMLElement>('[data-unsubscribe-status]');
-      const manageToggle = document.querySelector<HTMLButtonElement>('.manage-toggle');
-      const unsubscribePanel = document.querySelector<HTMLElement>('#unsubscribe-panel');
-      let subscribePending = false;
-      let unsubscribePending = false;
-
-      manageToggle?.addEventListener('click', () => {
-        if (!unsubscribePanel) return;
-        const willOpen = unsubscribePanel.hidden;
-        unsubscribePanel.hidden = !willOpen;
-        manageToggle.setAttribute('aria-expanded', String(willOpen));
-        if (willOpen) unsubscribePanel.querySelector<HTMLInputElement>('input[type="email"]')?.focus();
-      });
-
-      subscribeForm?.addEventListener('submit', () => {
-        subscribePending = true;
-        if (subscribeStatus) subscribeStatus.textContent = '正在提交…';
-      });
-
-      subscribeResult?.addEventListener('load', () => {
-        if (!subscribePending) return;
-        subscribePending = false;
-        if (subscribeStatus) subscribeStatus.textContent = '订阅请求已收到。如果这个邮箱已经订阅，无需重复操作。';
-        subscribeForm?.reset();
-      });
-
-      unsubscribeForm?.addEventListener('submit', () => {
-        unsubscribePending = true;
-        if (unsubscribeStatus) unsubscribeStatus.textContent = '正在提交退订请求…';
-      });
-
-      unsubscribeResult?.addEventListener('load', () => {
-        if (!unsubscribePending) return;
-        unsubscribePending = false;
-        if (unsubscribeStatus) unsubscribeStatus.textContent = '退订请求已提交。如果这个邮箱已订阅，之后将不再收到博客更新。';
-        unsubscribeForm?.reset();
-      });
-    </script>
-
     <footer>
       <div class="footer-main">
         <span>min的博客</span>
-        <div><a href="#subscribe">订阅</a><a href={withBase('/archive')}>归档</a><a href={withBase('/rss.xml')}>RSS</a></div>
+        <div><a href={withBase('/archive')}>归档</a><a href={withBase('/rss.xml')}>RSS</a></div>
       </div>
       <p class="photo-credit">封面：{heroConfig.images[0].credit}</p>
     </footer>

@@ -54,10 +54,27 @@ const timeline = essays.slice(0, 6).map((entry) => ({
       </div>
     </section>
 
+    <section class="subscribe" id="subscribe" aria-labelledby="subscribe-title">
+      <div class="subscribe-copy">
+        <p class="subscribe-kicker">SUBSCRIBE</p>
+        <h2 id="subscribe-title">订阅博客更新</h2>
+        <p>新的文章发布时，我会发一封邮件告诉你。不会频繁打扰，随时可以取消订阅。</p>
+      </div>
+      <div class="subscribe-form">
+        <iframe
+          title="订阅 min 的博客更新"
+          width="540"
+          height="305"
+          src="https://e4309122.sibforms.com/v2/serve/MUIFAOKPVie7fgwmto1Ea4jDjraCD-ZLm3vjcRBH6pj3cmtkovJ0muizVeTrz62iLvWwcbu_9H-H11qWfCkMDzym_cv7SF4IT6wDgk_MpfdihQVb6gORZ6UP8OFZbAGViy3AJEF5REpPdXLNGB6MoZXkNdKaUjP47PiHzinGIyGXqWXa_-1OR7HsvMG4IKvs0dRiL3EzG9OlQK0j-w=="
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
     <footer>
       <div class="footer-main">
         <span>min的博客</span>
-        <div><a href={withBase('/archive')}>归档</a><a href={withBase('/rss.xml')}>RSS</a></div>
+        <div><a href="#subscribe">订阅</a><a href={withBase('/archive')}>归档</a><a href={withBase('/rss.xml')}>RSS</a></div>
       </div>
       <p class="photo-credit">封面：{heroConfig.images[0].credit}</p>
     </footer>

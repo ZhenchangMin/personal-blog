@@ -4,15 +4,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SubHeader from '../../components/SubHeader.astro';
 import PageFooter from '../../components/PageFooter.astro';
 import '../../styles/interior.css';
-import { formatDate } from '../../lib/date';
+import { formatDate, sortNewest } from '../../lib/date';
 import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
-  const entries = (await getCollection('essays')).filter((entry) => entry.data.status === 'public');
-  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  const entries = sortNewest((await getCollection('essays')).filter((entry) => entry.data.status === 'public'));
+  return entries.map((entry, index) => ({
+    params: { id: entry.id },
+    props: {
+      entry,
+      olderEntry: entries[index + 1] ?? null,
+      newerEntry: entries[index - 1] ?? null,
+    },
+  }));
 }
 
-const { entry } = Astro.props;
+const { entry, olderEntry, newerEntry } = Astro.props;
+const writingHref = withBase('/#writing');
 const { Content } = await render(entry);
 const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THINK';
 ---
@@ -57,8 +65,29 @@ const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THIN
       </div>
 
       <div class="article-next">
-        <a href={withBase('/#writing')}><small>← 回到写作</small><strong>继续看最近写下的</strong></a>
-        <a href={withBase('/archive')}><small>归档 →</small><strong>按时间查看文章</strong></a>
+        {olderEntry ? (
+          <a href={withBase(`/writing/${olderEntry.id}`)}>
+            <small>← 上一篇</small>
+            <strong>{olderEntry.data.title}</strong>
+          </a>
+        ) : (
+          <a href={writingHref}>
+            <small>← min的博客</small>
+            <strong>回到最近写下的</strong>
+          </a>
+        )}
+
+        {newerEntry ? (
+          <a href={withBase(`/writing/${newerEntry.id}`)}>
+            <small>下一篇 →</small>
+            <strong>{newerEntry.data.title}</strong>
+          </a>
+        ) : (
+          <a href={writingHref}>
+            <small>min的博客 →</small>
+            <strong>回到最近写下的</strong>
+          </a>
+        )}
       </div>
     </article>
 

@@ -2,7 +2,6 @@
 title: "一些迷茫和思考"
 description: ""
 date: 2026-09-17
-location: "Suzhou"
 status: public
 kind: essay
 tags: ["记录", "生活"]

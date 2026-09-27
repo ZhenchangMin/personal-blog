@@ -22,7 +22,8 @@ export async function getStaticPaths() {
 const { entry, olderEntry, newerEntry } = Astro.props;
 const writingHref = withBase('/#writing');
 const { Content } = await render(entry);
-const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THINK';
+const isTech = entry.data.kind === 'tech';
+const kindLabel = isTech ? 'TECH · BUILD' : 'ESSAY · THINK';
 ---
 
 <BaseLayout title={`${entry.data.title} · min的博客`} description={entry.data.description} themeColor="#eceae3" type="article">
@@ -30,15 +31,14 @@ const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THIN
   <div class="page-shell">
     <SubHeader />
     <main id="main">
-      <header class="article-hero">
+      <header class:list={['article-hero', { 'article-hero-tech': isTech }]}>
         <p class="page-kicker">{kindLabel}</p>
         <h1 class="page-title">{entry.data.title}</h1>
         <p class="page-lede">{entry.data.description}</p>
         <div class="article-meta">
           <span>{formatDate(entry.data.date)}</span>
           <div>
-            {entry.data.location && <span class="article-location">{entry.data.location}</span>}
-            {entry.data.tags.map((tag) => <span class="article-tag">{tag}</span>)}
+            {entry.data.tags.map((tag) => <span class:list={['article-tag', { 'article-tag-tech': isTech }]}>{tag}</span>)}
           </div>
         </div>
       </header>
@@ -55,13 +55,10 @@ const kindLabel = entry.data.kind === 'learn' ? 'LEARN · NOTE' : 'ESSAY · THIN
   )}
 
   <div class="page-shell">
-    <article class:list={['article-body', { 'no-banner': !entry.data.heroImage }]}>
-      <div class="article-prose">
+    <article class:list={['article-body', { 'no-banner': !entry.data.heroImage, 'article-body-tech': isTech }]}>
+      <div class:list={['article-prose', { 'tech-prose': isTech }]}>
         <Content />
-        <p class="end-note">
-          {formatDate(entry.data.date)}
-          {entry.data.location ? ` · ${entry.data.location}` : ''}
-        </p>
+        <p class="end-note">{formatDate(entry.data.date)}</p>
       </div>
 
       <div class="article-next">

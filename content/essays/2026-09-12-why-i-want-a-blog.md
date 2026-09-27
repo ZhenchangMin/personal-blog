@@ -3,7 +3,6 @@ title: "我为什么想创建一个博客"
 description: "写一些真诚的文字来记录自己的生活吧"
 date: 2026-09-12
 updated: 2026-09-12
-location: "Suzhou"
 status: public
 kind: essay
 tags: ["记录", "生活"]

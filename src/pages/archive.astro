@@ -12,7 +12,7 @@ const all = (await getCollection('essays'))
     id: entry.id,
     date: entry.data.date,
     title: entry.data.title,
-    type: entry.data.kind === 'learn' ? 'Learn' : 'Essay',
+    type: entry.data.kind === 'tech' ? 'Tech' : 'Essay',
     href: withBase(`/writing/${entry.id}`),
   }))
   .sort((a, b) => b.date.getTime() - a.date.getTime());

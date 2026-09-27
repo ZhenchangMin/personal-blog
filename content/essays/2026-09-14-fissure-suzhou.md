@@ -2,7 +2,6 @@
 title: "关于FPG3苏州的那些事"
 description: "一次前所未有也许也不会再有的难忘经历"
 date: 2026-09-14
-location: "Suzhou"
 status: public
 kind: essay
 tags: ["记录", "生活"]

@@ -54,6 +54,17 @@ const socialImageURL = new URL(withBase(image), site);
 
     <title>{title}</title>
     <slot name="head" />
+    <style is:global>
+      :where(time, .article-meta > span, .article-prose .end-note, .archive-year > h2, .now-stamp strong, .now-history a, .moment-photo::after) {
+        font-family: "Noto Sans SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif !important;
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "lnum" 1, "tnum" 1;
+      }
+
+      :where(.article-prose:not(.tech-prose), .page-title, .page-lede, .writing-list h3, .article-next strong, .archive-item a) {
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif !important;
+      }
+    </style>
   </head>
   <body>
     <slot />

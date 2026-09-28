@@ -3,6 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import remarkGfm from 'remark-gfm';
 import { unified } from '@astrojs/markdown-remark';
 import remarkImageCaptions from './src/remark/imageCaptions.mjs';
+import remarkCjkSpacing from './src/remark/cjkSpacing.mjs';
 
 const owner = process.env.GITHUB_REPOSITORY_OWNER;
 const repository = process.env.GITHUB_REPOSITORY?.split('/')[1];
@@ -19,6 +20,6 @@ export default defineConfig({
   trailingSlash: 'never',
   integrations: [sitemap()],
   markdown: {
-    processor: unified({ remarkPlugins: [remarkGfm, remarkImageCaptions] }),
+    processor: unified({ remarkPlugins: [remarkGfm, remarkImageCaptions, remarkCjkSpacing] }),
   },
 });

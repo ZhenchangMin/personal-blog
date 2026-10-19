@@ -2,6 +2,7 @@
 title: "我为什么想创建一个博客"
 description: "写一些真诚的文字来记录自己的生活吧"
 date: 2026-09-12
+slug: 2026-09-12-why-i-want-a-blog
 updated: 2026-09-12
 status: public
 kind: essay

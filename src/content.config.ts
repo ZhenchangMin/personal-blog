@@ -10,6 +10,7 @@ const essays = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
+    slug: z.string().regex(/^[\p{L}\p{N}][\p{L}\p{N}-]*$/u).optional(),
     updated: z.coerce.date().optional(),
     status,
     kind: z.enum(['essay', 'tech']).default('essay'),

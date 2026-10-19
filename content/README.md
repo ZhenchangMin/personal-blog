@@ -7,7 +7,7 @@
 在 `content/essays/` 下新建 Markdown 文件，例如：
 
 ```text
-2026-09-12-why-i-want-a-blog.md
+travel-notes.md            # 也可以用中文文件名，例如：旅行随记.md
 ```
 
 推荐 frontmatter：
@@ -16,7 +16,9 @@
 ---
 title: "文章标题"
 description: "一行简介"
-date: 2026-09-12
+date: 2026-10-19       # 你决定采用的发布日期，不依赖文件名
+# updated: 2026-10-20  # optional：后续修订日期
+# slug: travel-notes   # optional：网页 URL 的固定标识；不写则使用文件名
 status: draft          # private | draft | public
 kind: essay            # essay | tech
 tags: []
@@ -24,6 +26,12 @@ heroImage: ""          # optional；只有配置时文章才显示头图
 heroAlt: ""            # optional
 ---
 ```
+
+**文件名不需要日期。** 网站的标题、时间排序、发布日期和标签以 frontmatter 为准。文章写几天都没关系，写完发布时再确定 `date` 即可；日后修订可以单独填写 `updated`。
+
+网址默认根据 Markdown 文件名生成，也可以由 `slug` 明确指定。**建议文章发布后不要随意改变 `slug`**，否则旧链接会失效。已有公开文章保留了原来的 `slug`，即使源码文件已改名，旧网址仍可访问。中文文件名也支持；如果不希望网址包含中文，可指定简短英文 `slug`。
+
+图片可按文章建立简短目录，例如 `content/essays/image/travel-notes/`，正文中引用 `![照片](image/travel-notes/photo.jpg)`，不用在目录名里重复日期。
 
 正文直接使用 Markdown。当前文章样式支持标题、列表、引用、表格、图片、图注、行内代码和代码块。
 
@@ -33,7 +41,7 @@ heroAlt: ""            # optional
 - `draft`：正在写
 - `public`：参与网站构建并发布
 
-写完并确认要公开后，将 `status` 改为 `public`，commit + push 后 GitHub Pages 会自动部署。
+写完并确认要公开后，将 `status` 改为 `public`，commit + push 后 GitHub Pages 会自动部署。注意：`draft` / `private` 只控制网站是否展示文章；**如果把草稿提交到公开 GitHub 仓库，其源文件仍然是公开可见的**。不想公开的草稿请先保留在本地。
 
 ## 文章类型
 

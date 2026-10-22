@@ -1,12 +1,12 @@
 ---
 title: "配置 QQ bot"
-description: "从 NapCat、OneBot 到 AstrBot，记一次不太顺利的 QQ 机器人开发"
+description: "小紫的诞生历程"
+disclosure: "本文存在人工智能参与，具体用作结构构思和代码检索。本文语言均已通过真人审查与润色。"
 date: 2026-10-22
 status: public
 kind: tech
 tags: ["技术", "AstrBot", "NapCat"]
 ---
-*本文存在人工智能参与，具体用作结构构思和代码检索。本文语言均已通过真人审查与润色。*
 
 我觉得拥有一个bot是很酷的一件事，尤其是我做自己的 Group Brief 项目了解到了napcat之后，我觉得这是一个极好的工具，可以用来搭建一个bot玩玩。
 

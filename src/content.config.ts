@@ -15,6 +15,7 @@ const essays = defineCollection({
     status,
     kind: z.enum(['essay', 'tech']).default('essay'),
     tags: z.array(z.string()).default([]),
+    disclosure: z.string().optional(),
     heroImage: z.string().optional(),
     heroAlt: z.string().optional(),
   }),

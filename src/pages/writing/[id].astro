@@ -32,8 +32,11 @@ const kindLabel = isTech ? 'TECH · BUILD' : 'ESSAY · THINK';
     <SubHeader />
     <main id="main">
       <header class:list={['article-hero', { 'article-hero-tech': isTech }]}>
-        <p class="page-kicker">{kindLabel}</p>
-        <h1 class="page-title">{entry.data.title}</h1>
+        {!isTech && <p class="page-kicker">{kindLabel}</p>}
+        <h1 class:list={['page-title', { 'article-title-with-kind': isTech }]}>
+          {isTech && <span class="article-title-kind">{kindLabel}</span>}
+          <span>{entry.data.title}</span>
+        </h1>
         <p class="page-lede">{entry.data.description}</p>
         <div class="article-meta">
           <span>{formatDate(entry.data.date)}</span>
@@ -41,6 +44,9 @@ const kindLabel = isTech ? 'TECH · BUILD' : 'ESSAY · THINK';
             {entry.data.tags.map((tag) => <span class:list={['article-tag', { 'article-tag-tech': isTech }]}>{tag}</span>)}
           </div>
         </div>
+        {entry.data.disclosure && (
+          <p class="article-disclosure" aria-label="文章创作说明">{entry.data.disclosure}</p>
+        )}
       </header>
     </main>
   </div>

@@ -4,8 +4,8 @@
 /* Technical articles: denser, code-first reading surface while preserving the site palette. */
 .article-hero-tech .page-kicker{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;letter-spacing:.09em;color:#486965}
 .article-hero-tech .page-lede{display:flex;align-items:center;min-height:1.7em;line-height:1.55;margin-top:20px}
-.article-disclosure{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;font-size:12px;line-height:1.75;color:#777d78;margin:20px 0 0;max-width:840px}
-@media(max-width:800px){.article-hero-tech .page-lede{margin-top:16px}.article-disclosure{font-size:11.5px;margin-top:17px}}
+.article-disclosure{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.75;color:#777d78;margin:20px 0 0;max-width:840px}
+@media(max-width:800px){.article-hero-tech .page-lede{margin-top:16px}.article-disclosure{font-size:13.5px;margin-top:17px}}
 .article-tag-tech{border-radius:3px;background:rgba(35,68,64,.08);border-color:rgba(35,68,64,.34);font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;letter-spacing:.01em}
 .article-tag-tech::before{content:"#";margin-right:2px;color:#7c8f8b}
 .article-body-tech{grid-template-columns:1fr minmax(0,840px) 1fr}
